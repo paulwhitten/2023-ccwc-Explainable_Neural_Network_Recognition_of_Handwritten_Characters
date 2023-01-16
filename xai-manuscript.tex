@@ -13,7 +13,7 @@
 \begin{document}
 
 \title{
-    XAI: Explainable Neural Network Recognition of Handwritten Characters
+    Explainable Neural Network Recognition of Handwritten Characters
 }
 
 \author{\IEEEauthorblockN{Author 1}
@@ -460,14 +460,14 @@ transform of the original zero.
     \centering
     \begin{subfigure}{.5\columnwidth}
         \centering
-        \includegraphics[width=3cm]{./images/raw_0-0-12.png}
+        \includegraphics[width=.50\textwidth]{./images/raw_0-0-12.png}
         \caption{A zero base image}
         \label{fig:zero_raw}
     \end{subfigure}%
     \begin{subfigure}{.5\columnwidth}
         \centering
-        \includegraphics[width=3cm]{./images/ch_0-0-12.png}
-        \caption{The convex hull of \ref{fig:zero_raw}}
+        \includegraphics[width=.50\textwidth]{./images/ch_0-0-12.png}
+        \caption{The convex hull of Fig.~\ref{fig:zero_raw}}
         \label{fig:zero_ch}
     \end{subfigure}
     \caption{An example of the convex hull transform of the digit zero}
@@ -577,6 +577,12 @@ Cleanlab was also used iteratively with three passes and results are reviewed in
 
 \section{Results}
 
+\subsection{MNIST Results}
+
+Accuracy achieved in \cite{whitten21} was 91.9\% with 100\% explainability on
+handwritten digits. Utilizing an unexplainable component, consisting of the
+original image, resulted in an improvement to 97.7\% accuracy.  The resulting
+average explainability metric, $X_d$, was reduced to 79\%.
 
 %Results for addition of the convex hull are 97.1\% accuracy.  TODO add more details
 %here.
@@ -769,7 +775,7 @@ for the classes of interest after the third Cleanlab pruning.
 %Can we introduce other metrics?
 
 This section depicts the explainability results using examples from the EMNIST
-balanced test set.  Example 1, which is labeled as an uppercase Q, is shown in
+balanced test set using only explainable properties.  Example 1, which is labeled as an uppercase Q, is shown in
 Fig.~\ref{fig:ex1}.  Table \ref{table:example1} shows that votes for classes Q,
 Z, R, and D were made by various properties.  Six of the properties contributed
 a vote for Q and one property each voted on the other classes.  Summing the
@@ -950,7 +956,7 @@ the XAI pipeline was able to correctly inference mislabeled samples.
 
 \begin{figure}[h]
     \centering
-    \textbf{Pruned Samples}\par\medskip 
+    %\textbf{Pruned Samples}\par\medskip 
     \begin{subfigure}{.20\columnwidth}
         \centering
         \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-inferred-S.png}
@@ -975,21 +981,187 @@ the XAI pipeline was able to correctly inference mislabeled samples.
         \caption{W label}
         \label{fig:inf_issue_W3}
     \end{subfigure}%
-    \begin{subfigure}{.20\columnwidth}
-        \centering
-        \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-10-inferred-F.png}
-        \caption{O label}
-        \label{fig:inf_issue_O10}
-    \end{subfigure}
-    \caption{Pruned samples that were inferred by the system.
-    Fig.~\ref{fig:inf_issue_G0}, originally labeled as a G was inferred correctly as an S with 42\% confidence.
-    Fig.~\ref{fig:inf_issue_T5}, originally labeled as a T was inferred correctly as a U with 36\% confidence.
-    Fig.~\ref{fig:inf_issue_O7}, originally labeled as an O was inferred correctly as an M with 56\% confidence.
-    Fig.~\ref{fig:inf_issue_W3}, originally labeled as a W was inferred correctly as an M with 65\% confidence.
-    Fig.~\ref{fig:inf_issue_O10}, originally labeled as an O was inferred correctly as an F with 40\% confidence.
-    }
+    %\begin{subfigure}{.20\columnwidth}
+    %    \centering
+    %    \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-10-inferred-F.png}
+    %    \caption{O label}
+    %    \label{fig:inf_issue_O10}
+    %\end{subfigure}
+    \caption{Pruned samples that were inferred by the system.}
     \label{fig:pruned_inf_samples}
 \end{figure}
+
+\begin{figure}[h]
+    \centering
+    %\textbf{Pruned Samples}\par\medskip 
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-stroke.png}
+        \caption{Stroke}
+        %\label{fig:inf_issue_G0_stroke}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-circle.png}
+        \caption{Circles}
+        %\label{fig:inf_issue_T5}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-el-circle.png}
+        \caption{Ellispe}
+        %\label{fig:inf_issue_O7}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-area.png}
+        \caption{Area}
+        %\label{fig:inf_issue_W3}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-line.png}
+        \caption{Line}
+        %\label{fig:inf_issue_O10}
+    \end{subfigure}
+    \caption{Relevant transforms of Fig.~\ref{fig:inf_issue_G0}.}
+    \label{fig:g0_trans}
+\end{figure}
+
+Fig.~\ref{fig:inf_issue_G0}, originally labeled as a G was inferred correctly as
+an S with 42\% confidence.  The next closest prediction was a Z with 14\%
+confidence.  The explanation for the prediction was due to the stroke, circle,
+area, and line properties being consistent with the letter S. Examples of the
+contributing transforms are depicted in Fig.~\ref{fig:g0_trans}.
+
+\begin{figure}[h]
+    \centering
+    %\textbf{Pruned Samples}\par\medskip 
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-T-5-stroke.png}
+        \caption{Stroke}
+        %\label{fig:inf_issue_G0_stroke}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-T-5-area.png}
+        \caption{Area}
+        %\label{fig:inf_issue_T5}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-T-5-endpoint.png}
+        \caption{Endpoint}
+        %\label{fig:inf_issue_O7}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-T-5-circle.png}
+        \caption{Circle}
+        %\label{fig:inf_issue_W3}
+    \end{subfigure}%
+    %\begin{subfigure}{.20\columnwidth}
+    %    \centering
+    %    \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-line.png}
+    %    \caption{Line}
+    %    %\label{fig:inf_issue_O10}
+    %\end{subfigure}
+    \caption{Relevant transforms of Fig.~\ref{fig:inf_issue_T5}.}
+    \label{fig:t5_trans}
+\end{figure}
+
+Fig.~\ref{fig:inf_issue_T5}, originally labeled as a T was inferred correctly as
+a U with 36\% confidence. The next closest prediction was a Z with 25\%
+confidence.  The explanation was due to the stroke, area,
+endpoint, and circle properties. Fig.~\ref{fig:t5_trans}
+depicts relevant transforms.
+
+\begin{figure}[h]
+    \centering
+    %\textbf{Pruned Samples}\par\medskip 
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-7-stroke.png}
+        \caption{Stroke}
+        %\label{fig:inf_issue_G0_stroke}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-7-endpoint.png}
+        \caption{Endpoint}
+        %\label{fig:inf_issue_T5}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-7-area.png}
+        \caption{Area}
+        %\label{fig:inf_issue_O7}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-7-circle.png}
+        \caption{Circle}
+        %\label{fig:inf_issue_W3}
+    \end{subfigure}%
+    %\begin{subfigure}{.20\columnwidth}
+    %    \centering
+    %    \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-7-fill.png}
+    %    \caption{Enclosed Region}
+    %    %\label{fig:inf_issue_O10}
+    %\end{subfigure}
+    \caption{Relevant transforms of Fig.~\ref{fig:inf_issue_O7}.}
+    \label{fig:o7_trans}
+\end{figure}
+
+Fig.~\ref{fig:inf_issue_O7}, originally labeled as an O was inferred correctly
+as an M with 56\% confidence. The next closest prediction was a  with 27\%
+confidence.  Rationale for the decision are the stroke, endpoint, area,
+and circle being consistent with an M. Fig.~\ref{fig:o7_trans} depicts the
+transforms that contributed to the decision.
+
+\begin{figure}[h]
+    \centering
+    %\textbf{Pruned Samples}\par\medskip 
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-W-3-stroke.png}
+        \caption{Stroke}
+        %\label{fig:inf_issue_G0_stroke}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-W-3-endpoint.png}
+        \caption{Endpoint}
+        %\label{fig:inf_issue_T5}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-W-3-area.png}
+        \caption{Area}
+        %\label{fig:inf_issue_O7}
+    \end{subfigure}%
+    \begin{subfigure}{.20\columnwidth}
+        \centering
+        \includegraphics[width=.90\textwidth]{./images/issues/excluded-W-3-line.png}
+        \caption{Line}
+        %\label{fig:inf_issue_W3}
+    \end{subfigure}%
+    %\begin{subfigure}{.20\columnwidth}
+    %    \centering
+    %    \includegraphics[width=.90\textwidth]{./images/issues/excluded-O-7-fill.png}
+    %    \caption{Enclosed Region}
+    %    %\label{fig:inf_issue_O10}
+    %\end{subfigure}
+    \caption{Relevant transforms of Fig.~\ref{fig:inf_issue_W3}.}
+    \label{fig:w3_trans}
+\end{figure}
+
+Fig.~\ref{fig:inf_issue_W3}, originally labeled as a W was inferred correctly as an M with 65\% confidence.
+The next closest character was a Z with 28\% confidence.  Rationale for selecting M was consistency with the
+stroke, endpoint, area, and line properties.  Relevant transforms are depicted in Fig.~\ref{fig:w3_trans}
+
+%Fig.~\ref{fig:inf_issue_O10}, originally labeled as an O was inferred correctly as an F with 40\% confidence.
 
 Clearly the quality of the training set is a big concern with NN and XAI.  The
 pruning methods we present attempts to improve the quality of the training set
