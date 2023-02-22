@@ -36,7 +36,12 @@ pcw@case.edu, fxw12@case.edu, cap2@case.edu}
 %email address}
 }
 
+\IEEEoverridecommandlockouts
+\IEEEpubid{\makebox[\columnwidth]{979-8-3503-3286-5/23/\$31.00~\copyright2023 IEEE \hfill} \hspace{\columnsep}\makebox[\columnwidth]{ }}
+
 \maketitle
+
+%\IEEEpubidadjcol
 
 \begin{abstract}
 
@@ -104,7 +109,7 @@ pcw@case.edu, fxw12@case.edu, cap2@case.edu}
     % architecture in an attempt to resolve issues. Results and explainable
     % rationale from pruned data is presented.
 
-    The prevalence of Artificial Intelligence (AI), in many aspects of life has
+    The prevalence of Artificial Intelligence (AI), in many aspects of life, has
     brought about an increasing need for explainability of AI solutions.
     Previous work has been posed to interpret the weights of Neural Networks and
     provide visual hints of explainability. This work introduces a partitioning
@@ -209,11 +214,11 @@ deep residual learning\cite{7780459}.
 
 The ability to map the learning classifier or recognizer to human-based
 explainability is a challenging task for human understandability.  Currently,
-there are at least seventeen explainable techniques such as decision tree-based,
+there are at least seventeen explainable techniques, such as decision tree-based,
 rule-based (i.e. knowledgebase), salience mapping, Grad-CAM, sensitivity-based analysis,
 feature importance, fuzzy-based, neural-network, and genetic-programming based.
 These techniques use one of three basic evaluation approaches:
-application-grounded, human-grounded and functionally grounded
+application-grounded, human-grounded, and functionally grounded
 \cite{Arrieta2020ExplainableAI,Survey18,Fuzzy19,Hagras18,GP18,selvaraju2017grad}.
 
 There has been work done by Vilone and Longo \cite{vilone2020explainable} to
@@ -255,12 +260,16 @@ datasets.  This research utilizes Cleanlab in some of the pruning techniques.
 
 This methodology consists of a set of steps to achieve an XAI system via image
 processing, supervised learning, and probabilistic techniques. The system takes
-samples for classification as input and outputs a set of prediction, confidence
-pairs as well as rationale for the classification decisions.
+samples for classification as input and outputs a set of pairs (class prediction
+and confidence of that class) as well as rationale for the classification
+decisions.
 
-The system constructed is a explainable architecture, as depicted in
-Fig.~\ref{fig:xai_data_pipeline}.  Input is acted upon in the first stage to
-transform it into multiple samples based upon explainable properties.  The next
+The system constructed is an explainable architecture, as depicted in
+Fig.~\ref{fig:xai_data_pipeline}.  The system takes a partitioning approach to
+decision-making and explainability based on explainable properties.  Explainable
+properties are characteristics of input data that can be leveraged for
+recognition and explainability.  Input is acted upon in the first stage to
+transform it into multiple samples based upon explainable properties. The next
 step performs property inferences, where solutions are posed based on each
 property. The third stage, the voting mechanism, considers the results of the
 multiple property inferences to make a global decision. Finally, the
@@ -302,7 +311,7 @@ incidence of the property in the input.
 
 In the case of the line and circle explainable properties, a transform that
 highlights lines and circles in images is the Hough
-transform\cite{Hough1959qva}.  Modules are composed to perform a hough
+transform\cite{Hough1959qva}.  Modules are composed to perform a Hough
 transform for linear, circle, and ellipse features.  The stroke of a character
 can be highlighted by taking the morphological skeleton\cite{LEE1994} of the
 input image.
@@ -310,7 +319,7 @@ input image.
 After implementing transform modules for each of the properties, test and
 training sets must be transformed and prepared for training. NNs are implemented
 in a 1:1 relationship with transform modules and trained using the transformed
-training set.  A NN is trained on and receives input from one property
+training set.  A NN is trained on, and receives input from, one property
 transformation.  Each resulting trained NN will make inferences based on its
 explainable property.
 
@@ -410,7 +419,7 @@ later comparison in Sec. \ref{emnist_results}.
 
 A strategy for improving the accuracy of the architecture, at the cost of
 explainability, is to add a NN to the Property Inferencing stage that will be
-trained on the untransformed sample and treat it as unexplainable in the system.
+trained on the untransformed input and treated as unexplainable in the system.
 That unexplainable contribution would have a high effectiveness metric, because
 of its accuracy, and would contribute to confidence but would detract from the
 explanation.  Characterizing the explainability of a proposed solution from the
@@ -422,10 +431,10 @@ $x_{i,d}$ represents the explainable component from NNs that vote for class $d$
 and $V_d$ is the set of NNs that vote for class $d$.  Note that explainability,
 $X_d$ would be $1.0 \geq X_d \geq 0$, with $X_d = 1.0$ signifying that only
 explainable NNs voted for $d$ while values $X_d < 1.0$ would signify that a vote
-was contributed by an unexplainable NN for class $d$.  In such a system, the
-output would consist of the set of class, confidence, explainability triples for
-each potential solution.
-
+was contributed by an unexplainable NN for class $d$.  In such a system, in
+addition to the explainable rationale for decisions, the output would consist of
+a set of triples representing the proposed decisions (class, confidence for the
+class, and explainability metric for the class).
 
 \subsection{Removing Ambiguous Data}
 \label{method:pruning}
@@ -612,18 +621,18 @@ strong desire to address some of the issues.
     \label{fig:emnist_samples}
 \end{figure}
 
-In an attempt improve explainable results, the removal of ambiguous and
+In an attempt to improve explainable results, the removal of ambiguous and
 mislabeled data was explored. Data and pruning of the training and test sets
 were performed in several ways and compared.
 
-The first pruning scheme was based on a threshold, of 75\% confidence, which
+The first pruning scheme was based on a threshold of 75\% confidence, which
 eliminated 5\% of the training set. Results of threshold pruning were observed
 on a per class basis and it was noted in Table \ref{tab_threshold_pruning_qty}
-that in some classes, over half of the samples were removed.  E.g., for
-uppercase letters, the I and L classes had more than 1200 of the 2400 samples
-for each class pruned. This pruning caused a highly unbalanced training set and
-resulted in only 13\% accuracy on uppercase letters.  Higher thresholds up to
-95\% were also attempted, however, poor accuracy results were observed.
+that in some classes, over half of the samples were removed.  E.g., the I and L
+classes had more than 1200 of the 2400 samples for each class pruned. This
+pruning caused a highly unbalanced training set and resulted in only 13\%
+accuracy on uppercase letters.  Higher thresholds up to 95\% were also
+attempted, however, poor accuracy results were observed.
 
 \begin{table}
     \centering
@@ -881,7 +890,7 @@ the classes, Q wins with a confidence of 71\%.
 
 \begin{figure}
     \centering
-    \includegraphics[width=2cm]{./images/examples/test-Q-0.png}
+    \includegraphics[width=1.5cm]{./images/examples/test-Q-0.png}
     \caption{Example 1: a test sample labeled Q}
     \label{fig:ex1}
 \end{figure}
@@ -957,7 +966,7 @@ Table \ref{table:exexample2} shows the explainability for Example 2.
 
 \begin{figure}
     \centering
-    \includegraphics[width=2cm]{./images/examples/test-C-1.png}
+    \includegraphics[width=1.5cm]{./images/examples/test-C-1.png}
     \caption{Example 2: A test sample labeled C}
     \label{fig:ex2}
 \end{figure}
@@ -1018,13 +1027,13 @@ Table \ref{table:exexample2} shows the explainability for Example 2.
     \label{table:exexample2}
 \end{table}
 
-The vote for an uppercase Z for example 2 by the enclosed region is a bit
-confusing as there should be no resulting enclosed pixels in the transformed C,
+The vote for an uppercase Z, by the enclosed region, is unexpected
+as there should be no resulting enclosed pixels in the transformed C,
 i.e., a flood fill, which is the transform associated with the enclosed region,
 should result in no pixels in the output image since a C has no enclosed region.
 A review of the resulting transform shows that this is indeed the case.  Test
 results show that samples form several classes, such as Y and L, that would not
-have pixels in a flood fill get Z votes from the enclosed region property.  This
+have pixels in a flood fill, get Z votes from the enclosed region property.  This
 suggests that a future improvement in the system could be to discount results
 from transforms void of any activated pixels, especially when the transform has
 several classes that generate empty images.  Improvements could also be
@@ -1044,11 +1053,11 @@ associated with each class.
 
 Images pruned from the training set due to issues such as mislabeled or
 ambiguous samples after one Cleanlab pruning were submitted back to the system.  
-Of the 1188 pruned images only 129 or about 11\% of the problematic labels from
+Of the 1188 pruned images only 129, or about 11\%, of the problematic labels from
 the original training set were recognized as correctly labeled.  The remaining
 89\% were recognized by the explainable architecture as other classes with
 varying degrees of confidence. Some of the pruned images are depicted in
-Fig.~\ref{fig:pruned_inf_samples}.  In many cases the explainable architecture
+Fig.~\ref{fig:pruned_inf_samples}.  In many cases the explainable architecture is
 able to correctly inference, according to human recognition, mislabeled samples.
 
 \begin{figure}[h]
@@ -1125,7 +1134,7 @@ able to correctly inference, according to human recognition, mislabeled samples.
     \label{fig:g0_trans}
 \end{figure}
 
-Fig.~\ref{fig:inf_issue_G0}, originally labeled as a G was inferred correctly by
+Fig.~\ref{fig:inf_issue_G0}, originally labeled as a G, was inferred correctly by
 the explainable architecture as an S with 42\% confidence.  The next closest
 prediction was a Z with 14\% confidence.  The explanation for the prediction was
 due to the stroke, circle, area, and line properties being consistent with the
@@ -1169,7 +1178,7 @@ Fig.~\ref{fig:g0_trans}.
     \label{fig:t5_trans}
 \end{figure}
 
-Fig.~\ref{fig:inf_issue_T5}, originally labeled as a T was inferred correctly as
+Fig.~\ref{fig:inf_issue_T5}, originally labeled as a T, was inferred correctly as
 a U with 36\% confidence. The next closest prediction was a Z with 25\%
 confidence.  The explanation was due to the stroke, area,
 endpoint, and circle properties. Fig.~\ref{fig:t5_trans}
@@ -1212,7 +1221,7 @@ depicts relevant transforms.
     \label{fig:o7_trans}
 \end{figure}
 
-Fig.~\ref{fig:inf_issue_O7}, originally labeled as an O was inferred correctly
+Fig.~\ref{fig:inf_issue_O7}, originally labeled as an O, was inferred correctly
 as an M with 56\% confidence. The next closest prediction was a Z with 27\%
 confidence.  Rationale for the decision are the stroke, endpoint, area,
 and circle being consistent with an M. Fig.~\ref{fig:o7_trans} depicts the
@@ -1255,19 +1264,21 @@ transforms that contributed to the decision.
     \label{fig:w3_trans}
 \end{figure}
 
-Fig.~\ref{fig:inf_issue_W3}, originally labeled as a W was inferred correctly as an M with 65\% confidence.
-The next closest character was a Z with 28\% confidence.  Rationale for selecting M was consistency with the
-stroke, endpoint, area, and line properties.  Relevant transforms are depicted in Fig.~\ref{fig:w3_trans}
+Fig.~\ref{fig:inf_issue_W3}, originally labeled as a W, was inferred correctly
+as an M with 65\% confidence. The next closest character was a Z with 28\%
+confidence.  Rationale for selecting M was consistency with the stroke,
+endpoint, area, and line properties.  Relevant transforms are depicted in
+Fig.~\ref{fig:w3_trans}
 
 %Fig.~\ref{fig:inf_issue_O10}, originally labeled as an O was inferred correctly as an F with 40\% confidence.
 
 The quality of the training set is a big concern with NN and XAI.  The pruning
-methods we present attempts to improve the quality of the training set to
-enhance accuracy and explainability. The explainable architecture benefits in
-two ways, (a) it was able to correct the problematic, pruned labels with a good
-degree of confidence, in some cases (b) the explainable architecture provided
-rationale based on explainable properties that could help a user resolve issues
-with labels.
+methods presented attempt to improve the quality of the training set, to enhance
+accuracy and explainability of the system. With respect to pruned samples, the
+explainable architecture was a benefit in two ways, (a) it was able to correct
+some problematic, pruned labels with a good degree of confidence (b) the
+explainable architecture provided rationale based on explainable properties that
+could help a user to confidently resolve issues with labels.
 
 \section{Conclusion}
 \label{conclusion}
@@ -1290,19 +1301,20 @@ when unexplainable components are added to the Architecture.
 
 The expansive EMNIST dataset was studied for explainable recognition of
 characters and some challenges with training data were identified.  The dataset
-used consists of about five times the number labels of previous data sets.
-There was a degree of ambiguity between some classes. Some of the ambiguity
-problems were avoided by further splitting the dataset.
+used consists of about five times the number labels of previous data sets. There
+was a degree of ambiguity between some classes. Some of the ambiguity problems
+were avoided by further splitting the dataset.
 
-A concept that is introduced is correctly pruning the training set in order to
-avoid misleading training set labels and improve the explainability. Results
+This work introduces the concept of correctly pruning a training set in order
+to avoid misleading training set labels and improve the explainability. Results
 processing the EMNIST character database using the explainable architecture are
-provided. The explainable architecture was also used to resolve some of the training set
-issues, leveraging explanations to increase confidence of new labels.
+provided. The explainable architecture was also used to resolve some of the
+training set issues, leveraging explanations to increase confidence of new
+labels.
 
-Further investigations for potential improvements to the explainable architecture
-involve exploring varying NN architectures as well as ensuring that transforms
-absent of activated pixels do not contribute to decisions. 
+Further investigations for potential improvements to the explainable
+architecture involve exploring varying NN architectures as well as ensuring that
+transforms absent of activated pixels do not contribute to decisions. 
 
 \bibliographystyle{plain}
 \bibliography{references}
