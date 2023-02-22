@@ -39,6 +39,8 @@ pcw@case.edu, fxw12@case.edu, cap2.case.edu}
 \maketitle
 
 \begin{abstract}
+
+    %original
     % The prevalence of Artificial Intelligence (AI) in many aspects of life has
     % brought about increasing concern and desire for explainability.  This work poses
     % and outlines the implementation of an Explainable Artificial Intelligence data
@@ -54,34 +56,53 @@ pcw@case.edu, fxw12@case.edu, cap2.case.edu}
     % resolve some of the training set issues by leveraging classifications and
     % explanations. Results from the EMNIST character database are provided.
 
+    %part 2
+    % The prevalence of Artificial Intelligence (AI), especially Machine Learning
+    % (ML), in many aspects of life has brought about increasing concern and
+    % desire for explainability.  Good work has been posed in an attempt to
+    % interpret the weights of Neural Networks and provide a hint of
+    % explainability.  Some methods, such as salience mapping and Grad-CAM,
+    % provide a visual explanation by highlighting the portions of input that led
+    % to a decision.  This work introduces a partitioning approach to
+    % explainability and constructs an explainable data pipeline.  Decision making
+    % is distributed among explainable properties and associated neural networks
+    % to propose solutions.  The proposed property-based solutions are then
+    % combined to make a global decision and provide explainable rationale for the
+    % decision related to the properties that contributed to the solution.  The
+    % particular explainable pipeline implemented recognizes handwritten
+    % characters and produces explanations based on a character property analysis.
+    % This work also approaches scalability by applying the explainable pipeline
+    % to a dataset with nearly five times more classes than prior work.
+    % Increasing the accuracy of the pipeline via adding unexplainable solutions.
+    % A metric is introduced that assists in characterizing explainability when an
+    % unexplainable component is added to the pipeline. A key challenge for
+    % supervised learning and explainability is ambiguous and mislabeled samples
+    % in training data. Techniques are applied to identify some of the issues with
+    % ambiguous and mislabeled data in EMNIST.  A concept explored in this work
+    % involves correctly pruning the training set in order to improve
+    % explainability and avoid misleading training set labels.  Samples from the
+    % training set that were pruned as label issues are presented back to the
+    % explainable pipeline in an attempt resolve issues and relabel them.  Results
+    % and explainable rationale from some pruned training set data is presented.
+
     The prevalence of Artificial Intelligence (AI), especially Machine Learning
-    (ML), in many aspects of life has brought about increasing concern and
-    desire for explainability.  Good work has been posed in an attempt to
-    interpret the weights of Neural Networks and provide a hint of
-    explainability.  Some methods, such as salience mapping and Gradient
-    weighted Class Activation Mapping, provide a visual explanation by
-    highlighting the portions of input that led to a decision.  This work
-    introduces a partitioning approach to explainability and constructs an
-    explainable data pipeline.  Decision making is distributed among explainable
-    properties and associated neural networks to propose solutions.  The
-    proposed property-based solutions are then combined to make a global
-    decision and provide explainable rationale for the decision related to the
-    properties that contributed to the solution.  The particular explainable
-    pipeline implemented recognizes handwritten characters and produces
-    explanations based on a character property analysis.  This work also
-    approaches scalability by applying the explainable pipeline to a dataset
-    with nearly five times more classes than prior work.  Increasing the accuracy
-    of the pipeline via adding unexplainable solutions.  A metric is introduced
-    that assists in characterizing explainability when an unexplainable
-    component is added to the pipeline. A key challenge for supervised learning
-    and explainability is ambiguous and mislabeled samples in training data.
-    Techniques are applied to identify some of the issues with ambiguous and
-    mislabeled data in EMNIST.  A concept explored in this work involves
-    correctly pruning the training set in order to improve explainability and
-    avoid misleading training set labels.  Samples from the training set that
-    were pruned as label issues are presented back to the explainable pipeline
-    in an attempt resolve issues and relabel them.  Results and explainable
-    rationale from some pruned training set data is presented.
+    (ML), in many aspects of life has brought about an increasing desire for
+    explainability. Work has been posed to interpret the weights of Neural
+    Networks and provide visual hints of explainability. This work introduces a
+    partitioning approach, constructing an explainable architecture that
+    recognizes handwritten characters. Decisions are partitioned among
+    explainable properties and associated neural networks to pose local
+    solutions. Local solutions contribute to a global decision and explainable
+    rationale for the decision. The accuracy of the architecture is improved by
+    mixing explainable and unexplainable solutions and a metric is introduced
+    that assists in characterizing explainability using mixed solutions.
+    Scalability of the explainable architecture is explored with a dataset
+    containing nearly five times the classes of prior work. Ambiguous and
+    mislabeled samples in training data prove challenging. Techniques are
+    applied to identify and prune the training set in order to improve
+    explainability. Pruned samples from the training set are presented to the
+    architecture in an attempt to resolve issues. Results and explainable
+    rationale from pruned data is presented.
 
 \end{abstract}
 
@@ -115,19 +136,19 @@ Section~\ref{related_work} discusses related work on ML and XAI.
 % mislabeled.  These ambiguous and mislabeled samples are especially challenging
 % for explainability.
 
-A property-based XAI data pipeline is introduced in Section~\ref{method} that
-provides rationale for classification decisions, referencing explainable
+A property-based explainable architecture is introduced in Section~\ref{method}
+that provides rationale for classification decisions, referencing explainable
 properties.  In this methodology a partitioning approach is taken where,
 explainable properties, transformations of data related to the explainable
-properties, and ML models trained against those transformations are used to make
-pose classification solutions.  The local, property-based, solutions are then
-combined to make a global decision.  The properties used in the global decision
-contribute rationale for the decision.  This methodology achieved acceptable
-accuracy results with MNIST and was able to provide explanations related to
-explainable properties of the samples.  Results from the explainable data
-pipeline using MNIST are presented in Section~\ref{mnist_results}.
+properties, and ML models trained against those transformations are used to pose
+local solutions.  The local, property-based, solutions are then combined to make
+a global decision.  The properties used in the global decision contribute
+rationale for the decision.  This methodology achieved acceptable accuracy
+results with MNIST and was able to provide explanations related to explainable
+properties of the samples.  Results from the explainable architecture using
+MNIST are presented in Section~\ref{mnist_results}.
 
-This work explores scaling issues as it applies the explainable data pipeline to
+This work explores scaling issues as it applies the explainable architecture to
 the expansive EMNIST dataset, with five times more classes than prior work.
 Results of processing EMNIST data is reviewed in Section~\ref{emnist_results}.
 Finally, explainability examples are presented in
@@ -138,7 +159,7 @@ training data from ambiguous and mislabeled samples.  Examples of issues with
 training data is briefly discussed in Section~\ref{related_work}. Pruning
 techniques for mitigating training data issues are outlined in
 Section~\ref{method:pruning}. Section~\ref{results:resolving} discusses the
-results of resolving some training issues using the explainable pipeline to
+results of resolving some training issues using the explainable architecture to
 produce label corrections with explainable rationale for those corrections.
 
 %% motivation
@@ -149,14 +170,14 @@ in a manner suitable to present to a human user.  There is currently no
 algorithm that can take weights of NN and justify decisions to a human.
 
 This work introduces and constructs an
-explainable data pipeline with the aim of recognizing handwritten characters while
+explainable architecture with the aim of recognizing handwritten characters while
 providing a human understandable explanation for decisions.
 
 A key challenge in explainability is resolving ambiguous and mislabeled samples
 in the expanded dataset.  Experiences and challenges of utilizing the expanded
 character dataset EMNIST are outlined.  This work attempts to prune some
 training label issues to achieve better results.  There is a desire to resolve
-label issues in a transparent way, providing an explanation for the resolution.
+label issues  and provide an explanation for the resolution.
 
 \section{Related Work}
 \label{related_work}
@@ -169,19 +190,18 @@ the perceptron\cite{rosenblatt1957perceptron}, the hardware, neural network
 models, and tools have improved drastically, e.g.,
 backpropagation\cite{6795724}, Convolutional Neural Networks
 (CNN)\cite{fukushima1982neocognitron}, gradient based learning\cite{726791},
-deep residual learning\cite{7780459}.  In this work CNNs and Resnet are utilized
-and results are compared.
+deep residual learning\cite{7780459}.
 
 \subsection{Explainable Artificial Intelligence}
 
 The ability to map the learning classifier or recognizer to human-based
 explainability is a challenging task for human understandability.  Currently,
 there are at least seventeen explainable techniques such as decision tree-based,
-rule-based (i.e. knowledgebase), salience mapping, sensitivity-based analysis,
+rule-based (i.e. knowledgebase), salience mapping, Grad-CAM, sensitivity-based analysis,
 feature importance, fuzzy-based, neural-network, and genetic-programming based.
 These techniques use one of three basic evaluation approaches:
 application-grounded, human-grounded and functionally grounded
-\cite{Arrieta2020ExplainableAI,Survey18,Fuzzy19,Hagras18,GP18}.
+\cite{Arrieta2020ExplainableAI,Survey18,Fuzzy19,Hagras18,GP18,selvaraju2017grad}.
 
 There has been work done by Vilone and Longo \cite{vilone2020explainable} to
 further characterize XAI techniques.  The XAI methodology from \cite{whitten21}
@@ -193,25 +213,226 @@ Granular property based inferences are used to support a global decision.
 Output from the property-based methodology is a textual justification for the
 decision based upon the explainable properties.
 
-\subsection{EMNIST}
+\subsection{Datasets}
 
-The Extended MNIST (EMNIST)\cite{cohen2017emnist} character and digit dataset
-consists of over 800,000 28x28 images of handwritten characters.  The dataset is
-split in six different ways, based on classes included and the balancing of
-classes in each split.  The split primarily used in this work is the EMNIST
-balanced data set which contains 131,600 samples in 46 classes consisting of
-decimal digits, 26 uppercase letters, and 10 lowercase letters.
+Handwritten sample datasets, such as the Modified National Institute of
+Standards and Technology database (MNIST)\cite{deng2012mnist}, which consists of
+70,000 samples of handwritten digits, and the Extended MNIST database\cite{cohen2017emnist}
+(EMNIST), which contains over 800,000 samples, serve as
+important datasets that have been utilized widely in ML to evaluate models. The
+datasets are valuable testbeds to leverage for research. Despite the wide use of
+MNIST and EMNIST, there are problems with samples that are ambiguous or
+mislabeled.  These ambiguous and mislabeled samples are especially challenging
+for explainability.
 
-While perusing samples in the EMNIST the dataset there were observations of
-ambiguous and mislabeled samples. Some of the observed label problems are shown
-in Fig.~\ref{fig:emnist_samples}. Each row in the figure represents samples from
-the indicated class.  The first sample of each row is acceptable, from a human
-perspective, subsequent samples in each row are not. Problems with the EMNIST dataset
-seemed more prevalent than the MNIST dataset. One particular
-class with labeling conflicts in the balanced split was the uppercase F.  Upon
-sampling examples of F in the balanced dataset, a large percentage, over 30\%,
-were observed as lowercase f. Other classes were noted to have ambiguous or
-overlapping symbols such as U and V; $0$, O, and D; and L, I, l and the digit 1.
+\subsection{Pruning Training Sets}
+
+Data sets that have noise, such as problems with labels and ambiguous samples,
+are problematic to effective ML training and explainability. Automatic pruning
+using weak learners to prune noisy data sets and obtained good results in
+\cite{angelova05}.  The excellent work on Confident Learning\cite{northcutt2021}
+produced an open source framework, Cleanlab, to identify label issues in
+datasets.  This research utilizes Cleanlab in some of the pruning techniques.
+
+%% Method
+\section{Method}
+\label{method}
+
+\subsection{Property-Based XAI Methodology}
+
+This methodology consists of a set of steps to achieve an XAI system via image
+processing, supervised learning, and probabilistic techniques. The system takes
+samples for classification as input and outputs a set of prediction, confidence
+pairs as well as rationale for the classification decisions.
+
+The system constructed is a explainable architecture, as depicted in
+Fig.~\ref{fig:xai_data_pipeline}.  Input is acted upon in the first stage to
+transform it into multiple samples based upon explainable properties.  The next
+step performs property inferences, where solutions are posed based on each
+property. The third stage, the voting mechanism, considers the results of the
+multiple property inferences to make a global decision. Finally, the
+explainability stage utilizes the properties that contributed to the decision to
+provide explainable rationale.
+
+\begin{figure}
+    %\centering
+    \includegraphics[width=9.2cm]{./images/xai-pipeline.png}
+    \caption{Property-Based Explainable Architecture}
+    \label{fig:xai_data_pipeline}
+\end{figure}
+
+% The methodology for building the XAI system takes training and test sets as
+% input. The training and test sets are composed of sets $X$ and $Y$ where $x_j
+% \in X$ and $y_j \in Y$ represent the sample and label, for the $j^{th}$ item of
+% the sets.  The sample, $x_j$, from the MNIST and EMNIST datasets
+% are simply a 28x28 grayscale image and the label, $y_j$, an unsigned 8 bit integer,
+% representing the class of the corresponding sample. 
+
+The first step of constructing the explainable architecture is to discover explainable properties.
+Samples from the training set are manually reviewed to identify explainable
+properties. Explainable properties are characteristics of particular classes of
+input samples.
+
+An example of an explainable property comes from an observation that uppercase
+characters such as A, E, F, H, I and L often contain lines. Lines are an
+explainable geometric property of multiple character classes. Another
+explainable property comes from observing circles or semicircles in letters like
+O, Q, B, P, D. A third property is called stroke.  The stroke represents the
+undirected path traced by the writing implement when writing the character.  The
+width can vary between characters based on the writer, tip of the implement, or
+pressure.
+
+From the list of explainable properties, property transforms are identified.  A
+property transform is a modification of the input to highlight an explainable
+property.  Transform modules implement the conversion of the input to exemplify
+incidence of the property in the input.
+
+In the case of the line and circle explainable properties, a transform that
+highlights lines and circles in images is the Hough
+transform\cite{Hough1959qva}.  Modules are composed to perform a hough
+transform for linear, circle, and ellipse features.  The stroke of a character
+can be highlighted by taking the morphological skeleton\cite{LEE1994} of the
+input image.
+
+After implementing transform modules for each of the properties, test and
+training sets must be transformed and prepared for training. NNs are implemented
+in a 1:1 relationship with transform modules and trained using the transformed
+training set.  A NN is trained on and receives input from one property
+transformation.  Each resulting trained NN will make inferences based on its
+explainable property.
+
+Upon completing the training of the NNs, the Knowledgebase (KB) is constructed.
+This is done by processing the transformed training data by the trained NNs and
+storing the results in the KB along with training labels.  The data in KB is
+then used to gauge the effectiveness of each property transform and NN for a
+particular class.  The effectiveness metrics are stored in the Knowledgbase and
+are later used to assist in the voting mechanism.
+
+A probabilistic voting scheme is constructed as a module to combine the granular
+solutions and utilize the effectiveness metrics to make a set of
+global classification decisions and confidence for each solution based on
+effectiveness.
+
+Finally, an XAI module is constructed that takes the output of Property
+Inferencing and the global decision from voting to compose an explanation.
+This XAI module relates the explainable properties that contributed to a global
+decision and bases the explanation on the explainable properties.
+
+Python applications implement the stages of the explainable architecture from
+Fig.~\ref{fig:xai_data_pipeline}. Modules transform the EMNIST data according to
+explainable properties, construct and train the ML models, build the
+knowledgebase, implement probabilistic voting, and finally a module
+constructs the rationale based on properties contributing to the global
+decision.
+
+Properties and corresponding property transforms that were utilized consist of:
+\begin{itemize}
+    \item The stroke property and skeleton transform
+    \item The circle property and Hough circle transform
+    \item The circle property and multiple non-overlapping Hough circle transforms
+    \item The crossing property and the corresponding crossing transform
+    \item The ellipse property and the Hough ellipse transform
+    \item The endpoint property and the endpoint transform
+    \item The enclosed region property and the flood fill transform
+    \item The line property and the linear Hough transform
+    \item The enclosed region of the stroke and the flood fill of the skeleton
+    \item The area property and the convex hull transform
+\end{itemize}
+
+A new property added to this methodology is the area property, representing the
+general region of the image that a character consumes. The corresponding
+property transform is the convex hull. Fig.~\ref{fig:zero_raw} represents an
+original zero sample character and Fig.~\ref{fig:zero_ch} represents the convex
+hull transform of the original zero.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.5\columnwidth}
+        \centering
+        \includegraphics[width=.50\textwidth]{./images/raw_0-0-12.png}
+        \caption{A zero base image}
+        \label{fig:zero_raw}
+    \end{subfigure}%
+    \begin{subfigure}{.5\columnwidth}
+        \centering
+        \includegraphics[width=.50\textwidth]{./images/ch_0-0-12.png}
+        \caption{The convex hull of Fig.~\ref{fig:zero_raw}}
+        \label{fig:zero_ch}
+    \end{subfigure}
+    \caption{An example of the convex hull transform of the digit zero}
+    \label{fig:chull_example}
+\end{figure}
+
+The Property Inferencing phase of the architecture was implemented in three
+different ways to compare performance of various NN models.  One implementation
+used Multi-Layer Perceptrons (MLP), two hidden layers of 128 perceptrons.  The
+second implementation used a two layer CNN.  The final implementation used
+Resnet50.
+
+Before using the explainable architecture, the MLP, CNN, and Resnet50 models were
+trained and tested on untransformed data to establish a baseline for
+unexplainable recognition.  The results are outlined in Table
+\ref{tab_unexplainable_accuracy_results}.
+
+After applying the explainable architecture to the balanced EMNIST dataset, a
+significant degradation in accuracy was observed in comparison to the
+unexplainable results as shown in Table~\ref{tab_explainable accuracy_results}.
+After considering opportunities for improving performance, the option of further
+splitting the EMNIST dataset by classes was used.  Balanced EMNIST was split
+into a dataset consisting of only digits, only uppercase digits (26 classes),
+and only lowercase letters.  Justification for such splitting involves
+considering works that show there is improvement with recognition when context
+of characters of a writing are considered \cite{506792}.  Based upon context, it
+may be apparent from which split a letter belongs. After splitting the balanced
+dataset, additional unexplainable and explainable baselines were obtained for
+later comparison in Sec. \ref{emnist_results}.
+
+\subsection{Explainability Metric for Unexplainable Components}
+\label{method:metric}
+
+\begin{equation}
+    X_d=\frac{\sum_i x_{i,d}}{|V_d|}
+    \label{eq:explainability}
+\end{equation}
+
+A strategy for improving the accuracy of the architecture, at the cost of
+explainability, is to add a NN to the Property Inferencing stage that will be
+trained on the untransformed sample and treat it as unexplainable in the system.
+That unexplainable contribution would have a high effectiveness metric, because
+of its accuracy, and would contribute to confidence but would detract from the
+explanation.  Characterizing the explainability of a proposed solution from the
+architecture may be accomplished by assigning an explainability component,
+$x_{i,d}$, to each NN, $i$.  Explainable NNs would be assigned an explainability
+component $1.0 \geq x_i > 0$ while unexplainable would be assigned $x_i = 0$.
+Eq.~\ref{eq:explainability} gives explainability, $X_d$, for class $d$ where
+$x_{i,d}$ represents the explainable component from NNs that vote for class $d$
+and $V_d$ is the set of NNs that vote for class $d$.  Note that explainability,
+$X_d$ would be $1.0 \geq X_d \geq 0$, with $X_d = 1.0$ signifying that only
+explainable NNs voted for $d$ while values $X_d < 1.0$ would signify that a vote
+was contributed by an unexplainable NN for class $d$.  In such a system, the
+output would consist of the set of class, confidence, explainability triples for
+each potential solution.
+
+
+\subsection{Removing Ambiguous Data}
+\label{method:pruning}
+
+EMNIST is split in six different ways, based on classes included and the
+balancing of classes in each split.  The split primarily used in this work is
+the EMNIST balanced data set which contains 131,600 samples in 46 classes.
+
+%consisting of decimal digits, 26 uppercase letters, and 10 lowercase letters.
+
+%While perusing samples in the EMNIST the dataset there were observations of
+%ambiguous and mislabeled samples.
+
+Some of the label problems observed in EMNIST, from a cursory review, are shown in
+Fig.~\ref{fig:emnist_samples}. Each row in the figure represents samples from
+a class.  The first sample of each row appears to be acceptable,
+subsequent samples in each row are not. One particular class, F, had a large
+percentage, over 30\%, observed as lowercase f. Other classes were noted to have
+ambiguous or overlapping symbols such as U and V; $0$, O, and D; and L, I, l and
+the digit 1.
 
 High incidence of label errors as well as ambiguous data causes accuracy
 problems with ML and especially exacerbates XAI system results.  There was a
@@ -378,199 +599,6 @@ strong desire to address some of the issues.
     \label{fig:emnist_samples}
 \end{figure}
 
-\subsection{Pruning Training Sets}
-
-Data sets that have noise, such as problems with labels and ambiguous samples,
-are problematic to effective ML training and explainability. Automatic pruning
-using weak learners to prune noisy data sets and obtained good results in
-\cite{angelova05}.  The excellent work on Confident Learning\cite{northcutt2021}
-produced an open source framework, Cleanlab, to identify label issues in
-datasets.  This research utilizes Cleanlab in some of the pruning techniques.
-
-%% Method
-\section{Method}
-\label{method}
-
-\subsection{Property-Based XAI Methodology}
-
-This methodology consists of a set of steps to achieve an XAI system via image
-processing, supervised learning, and probabilistic techniques. The system takes
-samples for classification as input and outputs a set of prediction, confidence
-pairs as well as rationale for the classification decisions.
-
-The system constructed is a data pipeline, as depicted in
-Fig.~\ref{fig:xai_data_pipeline}.  Input is acted upon in the first stage of the
-pipeline to transform it into multiple samples based upon explainable
-properties.  The next step of the pipeline performs property inferencing, where
-decisions are made based on each property. The third stage considers the results
-of the multiple property inferences to make a global decision in the voting
-phase. Finally, the explainability stage utilizes the properties that
-contributed to the decision to provide explainable rationale.
-
-\begin{figure}
-    %\centering
-    \includegraphics[width=9.2cm]{./images/xai-pipeline.png}
-    \caption{Property-Based XAI Data Pipeline}
-    \label{fig:xai_data_pipeline}
-\end{figure}
-
-The methodology for building the XAI system takes training and test sets as
-input. The training and test sets are composed of sets $X$ and $Y$ where $x_j
-\in X$ and $y_j \in Y$ represent the sample and label, for the $j^{th}$ item of
-the set, respectively.  The sample, $x_j$, from the MNIST and EMNIST datasets
-are simply a 28x28 input image and the label, $y_j$, an unsigned 8 bit integer,
-representing the class of the corresponding sample. 
-
-The first step of constructing the pipeline is to discover explainable properties.
-Samples from the training set are reviewed manually to identify explainable
-properties. Explainable properties are characteristics of particular classes of
-input samples.
-
-An example of an explainable property comes from an observation that uppercase
-characters such as A, E, F, H, I and L often contain lines. Lines are an
-explainable geometric property of multiple character classes. Another
-explainable property comes from observing circles or semicircles in letters like
-O, Q, B, P, D. A third property is called stroke.  The stroke represents the
-undirected path traced by the writing implement when writing the character.  The
-width can vary between characters based on the writer, tip of the implement, or
-pressure.
-
-From the list of explainable properties, property transforms are identified.  A
-property transform is a modification of the input to highlight an explainable
-property.  Transform modules implement the conversion of the input to exemplify
-incidence of the property in the input.
-
-In the case of the line and circle explainable properties, a transform that
-highlights lines and circles in images is the Hough
-transform\cite{Hough1959qva}.  Modules are composed to perform a hough
-transforms for linear and circle or ellipse features.  The stroke of a character
-can be highlighted by taking the morphological skeleton\cite{LEE1994} of the
-input image.
-
-After implementing transform modules for each of the properties, test and
-training sets must be transformed and prepared for training. NNs are implemented
-in a 1:1 relationship with transform modules and trained using the transformed
-training set.  A NN is trained on and receives input from one property
-transformation.  Each resulting trained NN will make fine-grained inferences
-based on its explainable property.
-
-Upon completing the training of the NNs, the Knowledgebase (KB) is constructed.
-This is done by processing the transformed training data by the trained NNs and
-storing the results in the KB along with training labels.  The data in KB is
-then used to gauge the effectiveness of each property transform and NN for a
-particular class.  The effectiveness metrics are stored in the Knowledgbase and
-are later used to assist in the voting mechanism.
-
-A probabilistic voting scheme is constructed as a module to combine the granular
-classification results and utilize the effectiveness metrics to make a set of
-global classification decisions and confidence for each decision based on
-effectiveness.
-
-Finally, an XAI module is constructed that takes the output of property
-inferencing and the global decision from voting to composes an explanation.
-This XAI module relates the explainable properties that contributed to a global
-decision and bases the explanation on the explainable properties.
-
-Python applications implement the stages of the explainable data pipeline from
-Fig.~\ref{fig:xai_data_pipeline}. Modules transform the EMNIST data according to
-explainable properties, construct and train the ML models, build the
-knowledgebase, implement probabilistic inferencing, and finally a module
-constructs the rationale based on properties contributing to the global
-decision.
-
-Properties and corresponding property transforms that were utilized consist of:
-\begin{itemize}
-    \item The stroke property and skeleton transform
-    \item The circle property and Hough circle transform
-    \item The circle property and multiple non-overlapping Hough circle transforms
-    \item The crossing property and the corresponding crossing transform
-    \item The ellipse property and the Hough ellipse transform
-    \item The endpoint property and the endpoint transform
-    \item The enclosed region property and the flood fill transform
-    \item The line property and the linear Hough transform
-    \item The enclosed region of the stroke and the flood fill of the skeleton
-    \item The area property and the convex hull transform
-\end{itemize}
-
-A new property added to this methodology is the area property, representing the
-general region of the image that a character consumes. The corresponding
-property transform is the convex hull. Fig.~\ref{fig:zero_raw} represents an
-original zero sample character and Fig.~\ref{fig:zero_ch} represents the convex
-hull transform of the original zero.
-
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}{.5\columnwidth}
-        \centering
-        \includegraphics[width=.50\textwidth]{./images/raw_0-0-12.png}
-        \caption{A zero base image}
-        \label{fig:zero_raw}
-    \end{subfigure}%
-    \begin{subfigure}{.5\columnwidth}
-        \centering
-        \includegraphics[width=.50\textwidth]{./images/ch_0-0-12.png}
-        \caption{The convex hull of Fig.~\ref{fig:zero_raw}}
-        \label{fig:zero_ch}
-    \end{subfigure}
-    \caption{An example of the convex hull transform of the digit zero}
-    \label{fig:chull_example}
-\end{figure}
-
-The property inferencing phase of the pipeline was implemented in three
-different ways to compare performance of differing NN models.  One
-implementation used Multi-Layer Perceptrons (MLP), two hidden layers of 128
-perceptrons.  The second implementation used a two layer CNN.  The final
-implementation used Resnet50 models.
-
-Before using the explainable pipeline, the MLP, CNN, and Resnet50 models were
-trained and tested on untransformed data to establish a baseline for
-unexplainable recognition.  The results are outlined in Table
-\ref{tab_unexplainable_accuracy_results}.
-
-After applying the XAI pipeline to the balanced EMNIST dataset, a significant
-degradation in accuracy was observed in comparison to the unexplainable results.
-After considering opportunities for improving performance, the option of further
-splitting the EMNIST dataset by classes was used.  Balanced EMNIST was split
-into a dataset consisting of only digits, only uppercase digits (26 classes),
-and only lowercase letters.  Justification for such splitting involves
-considering works that show there is improvement with recognition when context
-of characters of a writing are considered \cite{506792}.  Based upon context, it
-may be apparent from which split a letter belongs. After splitting the balanced
-dataset, additional unexplainable and explainable baselines were obtained for
-later comparison in Sec. \ref{emnist_results}.
-
-\subsection{Explainability Metric for Unexplainable Components}
-\label{method:metric}
-
-A strategy for improving the accuracy of the pipeline, at the cost of
-explainability, is to add a NN to the inferencing stage that will be trained on
-the untransformed sample and treat it as unexplainable in the system.  That
-unexplainable contribution would have a high effectiveness metric, because of
-its accuracy, and would contribute to confidence but would not contribute to the
-explanation.  Consider the system from \cite{whitten21} with all explainable
-properties, the properties are treated equally in terms of the explanation. If
-an unexplainable component is added, there should be a means of detracting form
-the explainability. This may be accomplished by assigning an explainability
-component $x_i$ to each NN, $i$.  Explainable NNs would have $1.0 \geq x_i > 0$
-while unexplainable would have $x_i = 0$.  The explainable components would be
-summed for each class $d$ the NNs vote for to give explainability $X_d$ in
-Eq.~\ref{eq:explainability} where $x_{i,d}$ represents the explainable component
-from NNs that vote for class $d$ and $V_d$ is the set of NNs that vote for class
-$d$.  In such a system, the output of would consist of the set of class,
-confidence, explainability triples for each potential solution.  Note that
-explainability would be $1.0 \geq X_d \geq 0$, with $X_d = 1.0$ signifying that
-only explainable NNs voted for $d$ while values $X_d < 1.0$ would signify that a
-vote was contributed by an unexplainable NN for class $d$.
-
-
-\begin{equation}
-    X_d=\frac{\sum_i x_{i,d}}{|V_d|}
-    \label{eq:explainability}
-\end{equation}
-
-\subsection{Removing Ambiguous Data}
-\label{method:pruning}
-
 In an attempt improve explainable results, the removal of ambiguous and
 mislabeled data was explored. Data and pruning of the training and test sets
 were performed in several ways and compared.
@@ -582,8 +610,7 @@ that in some classes, over half of the samples were removed.  E.g., for
 uppercase letters, the I and L classes had more than 1200 of the 2400 samples
 for each class pruned. This pruning caused a highly unbalanced training set and
 resulted in only 13\% accuracy on uppercase letters.  Higher thresholds up to
-95\% were also attempted, however, poor accuracy results were observed most
-likely due to unbalancing the training set.
+95\% were also attempted, however, poor accuracy results were observed.
 
 \begin{table}
     \centering
@@ -610,12 +637,9 @@ likely due to unbalancing the training set.
 
 The second pruning scheme limited the pruning to only the worst 5\% confidence
 of each class. Wrong classifications were especially penalized by assigning the
-confidence a negative value, via multiplication by $-1.0$.  A negative value on
-wrong classifications practically ensures a sample will be pruned. The results on
-this pruned training and test set were about 89.24\% accuracy on uppercase letters
-versus 86.75\% on unpruned data.  This scheme used a K-fold Cross-validation to
-ensure that confidence of the training set samples were attained out of sample
-and without bias.
+confidence a negative value, via multiplication by $-1.0$.  This scheme used a
+K-fold Cross-validation to ensure that confidence of the training set samples
+were obtained out of sample and without bias.
 
 Another means of pruning involved leveraging Cleanlab to remove issues from the data.
 Cleanlab was also used iteratively with three passes and results are reviewed in
@@ -627,10 +651,11 @@ Cleanlab was also used iteratively with three passes and results are reviewed in
 \subsection{MNIST Results}
 \label{mnist_results}
 
-Accuracy achieved in \cite{whitten21} was 91.9\% with 100\% explainability on
-handwritten digits. Utilizing an unexplainable component, consisting of the
-original image, resulted in an improvement to 97.7\% accuracy.  The resulting
-average explainability metric, $X_d$, was reduced to 79\%.
+Accuracy achieved previously with MNIST was 91.9\% with 100\% explainability on
+handwritten digits\cite{whitten21}. Utilizing an unexplainable component,
+consisting of the original image, and an additional convex hull transform
+resulted in an improvement to 97.7\% accuracy.  The resulting average
+explainability metric, $X_d$, was reduced to 79\%.
 
 %Results for addition of the convex hull are 97.1\% accuracy.  TODO add more details
 %here.
@@ -642,13 +667,12 @@ average explainability metric, $X_d$, was reduced to 79\%.
 \label{emnist_results}
 
 Table~\ref{tab_unexplainable_accuracy_results} shows the accuracy results using
-only the indicated NN on the various EMNIST datasets.  Note that the accuracy
-results are only using the base images without transformation and a single NN.
-On the full balanced dataset, with 46 classes, Resent50 and the CNN performed
-comparably. The two layer CNN can be observed as having maximum accuracy results
-in all cases except lowercase characters.  The reason for lower Resnet results
-may be due to resizing the input images since the Resnet implementation that was
-utilized requires a minimum input of 32x32.  
+the indicated NN on the various EMNIST dataset and splits. On the full balanced
+dataset, with 46 classes, Resent50 and the CNN performed comparably. The two
+layer CNN can be observed as having maximum accuracy results in all cases except
+lowercase characters.  The reason for lower Resnet results may be due to
+resizing the input images since the Resnet implementation that was utilized
+requires a minimum input of 32x32.  
 
 \begin{table}
     \centering
@@ -677,10 +701,10 @@ utilized requires a minimum input of 32x32.
 Table \ref{tab_explainable accuracy_results} shows the explainable accuracy
 results on the unpruned data. Compared to Table
 \ref{tab_unexplainable_accuracy_results} the results are lower.  As expected,
-there appears to be a cost in decreased accuracy for explainability.
+there appears to be a cost explainability.  That cost is decreased accuracy.
 %TODO: add more details here.
 
-In the explainable results, Tab.~\ref{tab_explainable accuracy_results}, the
+In the explainable results, Table~\ref{tab_explainable accuracy_results}, the
 Resnet50 models appeared to perform better with the full EMNIST dataset and
 uppercase characters.
 
@@ -699,7 +723,7 @@ uppercase characters.
         \hline
         MLP & 71.04 & 64.99 & 95.10 & 90.80 & 81.22 & 73.81 & 91.68 & 81.41 \\
         \hline
-        Two layer CNN & 68.21 & 64.97 & 93.63 & 92.65 & 80.10 & 79.96 & 88.77 & 86.57 \\
+        Two layer CNN & 68.21 & 64.97 & 93.63 & 92.65 & 84.93 & 82.88 & 88.77 & 86.57 \\
         \hline
         Resnet50 & 87.06 & 73.93 & 93.10 & 91.86 & 90.79 & 86.75 & 79.10 & 81.30 \\
         \hline
@@ -709,7 +733,7 @@ uppercase characters.
 \end{table}
 
 Table~\ref{raw_cap_confusion_matrix} shows the confusion matrix for interesting
-uppercase letters after running though the explainable pipeline. There is
+uppercase letters after running though the explainable architecture. There is
 significant confusion with the I and L classes and a fair degree of confusion
 with the U and V classes.
 
@@ -754,8 +778,9 @@ Table \ref{raw_cap_cleanlab_confusion_matrix} indicates the same uppercase
 letters of interest. The confusion in the I class appears to have gotten better.
 L, U, and V classes appear to have gotten worse. Six of the eight classes of
 interest had decreases in correct classifications, the values along the
-diagonal.  Using CNNs, the overall results of one round of Cleanlab were
-decrease in accuracy to 87.4\% on uppercase letters from 88.7\% without pruning.
+diagonal.  Using CNNs in the explainable architecture, the overall results of
+one round of Cleanlab were an increase in accuracy to 87.4\% on uppercase
+letters from 82.9\% without pruning.
 
 \begin{table}
     \centering
@@ -787,9 +812,15 @@ decrease in accuracy to 87.4\% on uppercase letters from 88.7\% without pruning.
 \end{table}
 
 After applying subsequent rounds of Cleanlab to the capital letter dataset, the
-accuracy returned to 88.7\% after the third iteration of pruning. Table
-\ref{raw_cap_cleanlab_third_confusion_matrix} again shows the confusion matrix
-for the classes of interest after the third Cleanlab pruning.
+accuracy achieved was 86.6\% after the second and 88.7\% after the third
+iteration of pruning. Table \ref{raw_cap_cleanlab_third_confusion_matrix} again
+shows the confusion matrix for the classes of interest after the third Cleanlab
+pruning.
+
+The best pruning results were achieved performing the 5\% pruning with a penalty
+for incorrect labels.  The results on this pruned set were about 89.2\% accuracy
+on uppercase letters versus 82.9\% on unpruned test data using CNN in the
+explainable architecture.  
 
 \begin{table}
     \centering
@@ -828,11 +859,12 @@ for the classes of interest after the third Cleanlab pruning.
 %Can we introduce other metrics?
 
 This section depicts the explainability results using examples from the EMNIST
-balanced test set using only explainable properties.  Example 1, which is labeled as an uppercase Q, is shown in
-Fig.~\ref{fig:ex1}.  Table \ref{table:example1} shows that votes for classes Q,
-Z, R, and D were made by various properties.  Six of the properties contributed
-a vote for Q and one property each voted on the other classes.  Summing the
-effectiveness weights for the classes, Q wins with a confidence of 71\%.
+balanced test set using only explainable properties.  Example one, which is
+labeled as an uppercase Q, is shown in Fig.~\ref{fig:ex1}.  Table
+\ref{table:example1} shows that votes for classes Q, Z, R, and D were made by
+various properties.  Six of the properties contributed a vote for Q and one
+property each voted on the other classes.  Summing the effectiveness weights for
+the classes, Q wins with a confidence of 71\%.
 
 \begin{figure}
     \centering
@@ -880,9 +912,8 @@ effectiveness weights for the classes, Q wins with a confidence of 71\%.
     \label{table:example1}
 \end{table}
 
-Explainable rationale provided by XAI is depicted in \ref{table:exexample1} for the four classes that
-received votes from the NNs.  Along with the classes and confidence levels from Table \ref{table:example1}
-the explanations are output from the system.
+Explainable rationale provided by XAI is depicted in Table~\ref{table:exexample1} for the four classes that
+received votes from the NNs.
 
 \begin{table}
     \caption{Rationale for example 1}
@@ -905,11 +936,11 @@ the explanations are output from the system.
 
 Figure \ref{fig:ex2} shows example two from the test set which is labeled as an
 uppercase C. Votes by the properties in Table \ref{table:example2} show that
-several properties infer an uppercase C, e.g., stroke, endpoint, area, circle,
-and crossing. The overall weight for the class C is 4.95 from the effectiveness
+several properties infer an uppercase C.  The overall weight for the class C is 4.95 from the effectiveness
 of the properties giving it a confidence of 74\%. The uppercase Z receives a
 vote from the enclosed region property. Uppercase O receives a vote from the
-circle property via the ellipse transform.
+circle property via the ellipse transform.  The class C wins with 74\% confidence.
+Table \ref{table:exexample2} shows the explainability for Example 2.
 
 \begin{figure}
     \centering
@@ -981,21 +1012,19 @@ should result in no pixels in the output image since a C has no enclosed region.
 A review of the resulting transform shows that this is indeed the case.  Test
 results show that samples form several classes, such as Y and L, that would not
 have pixels in a flood fill get Z votes from the enclosed region property.  This
-suggests that an improvement in the system could be to discount results from
-transforms void of any activated pixels, especially when the transform has
-several classes that generate empty images, due to the lack of a particular
-property.  Improvements could also be accomplished using knowledge of the
-explainable properties associated and not associated with each class.
-Implementing such rules into the pipeline add elements of an expert system and
-detract from the generality of the XAI system.
+suggests that a future improvement in the system could be to discount results
+from transforms void of any activated pixels, especially when the transform has
+several classes that generate empty images.  Improvements could also be
+accomplished using knowledge of the explainable properties associated and not
+associated with each class.
 
-Table \ref{table:exexample2} shows the explainability for example 2.  In this case, the system indicates:
+%Table \ref{table:exexample2} shows the explainability for Example 2.  In this case, the system indicates:
 
-\begin{itemize}
-    \item Confidence is high for interpreting as a C due to the stroke, endpoint, area, circle, and crossing properties.
-    \item Confidence is low for interpreting as a Z due to enclosed region properties.
-    \item Confidence is low for interpreting as a O due to circle properties.
-\end{itemize}
+% \begin{itemize}
+%     \item Confidence is high for interpreting as a C due to the stroke, endpoint, area, circle, and crossing properties.
+%     \item Confidence is low for interpreting as a Z due to enclosed region properties.
+%     \item Confidence is low for interpreting as a O due to circle properties.
+% \end{itemize}
 
 \subsection{Resolving Mislabeled Pruned Data}
 \label{results:resolving}
@@ -1004,9 +1033,10 @@ Images pruned from the training set due to issues such as mislabeled or
 ambiguous samples after one Cleanlab pruning were submitted back to the system.  
 Of the 1188 pruned images only 129 or about 11\% of the problematic labels from
 the original training set were recognized as correctly labeled.  The remaining
-89\% were still unrecognizable and still ambiguous as to the class. Some of the
-pruned images are depicted in Fig.~\ref{fig:pruned_inf_samples}.  In many cases
-the XAI pipeline was able to correctly inference mislabeled samples.
+89\% were recognized by the explainable architecture as other classes with
+varying degrees of confidence. Some of the pruned images are depicted in
+Fig.~\ref{fig:pruned_inf_samples}.  In many cases the explainable architecture
+able to correctly inference, according to human recognition, mislabeled samples.
 
 \begin{figure}[h]
     \centering
@@ -1082,11 +1112,12 @@ the XAI pipeline was able to correctly inference mislabeled samples.
     \label{fig:g0_trans}
 \end{figure}
 
-Fig.~\ref{fig:inf_issue_G0}, originally labeled as a G was inferred correctly as
-an S with 42\% confidence.  The next closest prediction was a Z with 14\%
-confidence.  The explanation for the prediction was due to the stroke, circle,
-area, and line properties being consistent with the letter S. Examples of the
-contributing transforms are depicted in Fig.~\ref{fig:g0_trans}.
+Fig.~\ref{fig:inf_issue_G0}, originally labeled as a G was inferred correctly by
+the explainable architecture as an S with 42\% confidence.  The next closest
+prediction was a Z with 14\% confidence.  The explanation for the prediction was
+due to the stroke, circle, area, and line properties being consistent with the
+letter S. Examples of the contributing transforms are depicted in
+Fig.~\ref{fig:g0_trans}.
 
 \begin{figure}[h]
     \centering
@@ -1169,7 +1200,7 @@ depicts relevant transforms.
 \end{figure}
 
 Fig.~\ref{fig:inf_issue_O7}, originally labeled as an O was inferred correctly
-as an M with 56\% confidence. The next closest prediction was a  with 27\%
+as an M with 56\% confidence. The next closest prediction was a Z with 27\%
 confidence.  Rationale for the decision are the stroke, endpoint, area,
 and circle being consistent with an M. Fig.~\ref{fig:o7_trans} depicts the
 transforms that contributed to the decision.
@@ -1217,12 +1248,13 @@ stroke, endpoint, area, and line properties.  Relevant transforms are depicted i
 
 %Fig.~\ref{fig:inf_issue_O10}, originally labeled as an O was inferred correctly as an F with 40\% confidence.
 
-The quality of the training set is a big concern with NN and XAI.  The
-pruning methods we present attempts to improve the quality of the training set
-to enhance accuracy and explainability. The XAI pipeline benefits in two ways,
-(a) it was able to correct the problematic, pruned labels with a good degree of
-confidence, in some cases (b) the XAI pipeline provided rationale based on
-explainable properties that could help a user resolve issues with labels.
+The quality of the training set is a big concern with NN and XAI.  The pruning
+methods we present attempts to improve the quality of the training set to
+enhance accuracy and explainability. The explainable architecture benefits in
+two ways, (a) it was able to correct the problematic, pruned labels with a good
+degree of confidence, in some cases (b) the explainable architecture provided
+rationale based on explainable properties that could help a user resolve issues
+with labels.
 
 \section{Conclusion}
 \label{conclusion}
@@ -1237,18 +1269,27 @@ explainable properties that could help a user resolve issues with labels.
 
 %This paper introduces a neural network architecture which recognizes handwritten characters and produces explanations based on a character property analysis.
 
-This work introduced an XAI data pipeline for recognizing handwritten
-characters.  This work increased the accuracy of the pipeline by adding highly
-accurate but unexplainable components. A metric is introduced that assists in
-characterizing explainability when unexplainable components is added to the
-pipeline. The expansive EMNIST dataset was studied for explainable recognition
-of characters and some challenges with training data were identified.  A key
-concept to explainability that is introduced is correctly pruning the training
-set in order to improve the explainability and avoid misleading training set
-labels.  Results processing the EMNIST character database using the XAI data
-pipeline are provided. The XAI pipeline was also used to resolve some of the
-training set issues, leveraging explanations to increase confidence of new
-labels.
+This work introduced an explainable architecture for recognizing handwritten
+characters.  This work increased the accuracy of the architecture by leveraging
+multiple NN architectures and by adding highly accurate but unexplainable
+components. A metric is introduced that assists in characterizing explainability
+when unexplainable components are added to the Architecture.
+
+The expansive EMNIST dataset was studied for explainable recognition of
+characters and some challenges with training data were identified.  The dataset
+used consists of about five times the number labels of previous data sets.
+There was a degree of ambiguity between some classes. Some of the ambiguity
+problems were avoided by further splitting the dataset.
+
+A concept that is introduced is correctly pruning the training set in order to
+avoid misleading training set labels and improve the explainability. Results
+processing the EMNIST character database using the explainable architecture are
+provided. The explainable architecture was also used to resolve some of the training set
+issues, leveraging explanations to increase confidence of new labels.
+
+Further investigations for potential improvements to the explainable architecture
+involve exploring varying NN architectures as well as ensuring that transforms
+absent of activated pixels do not contribute to decisions. 
 
 \bibliographystyle{plain}
 \bibliography{references}
