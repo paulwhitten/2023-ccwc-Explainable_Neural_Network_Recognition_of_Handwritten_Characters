@@ -181,7 +181,7 @@ results of resolving some training issues using the explainable architecture to
 produce label corrections with explainable rationale for those corrections.
 
 %% motivation
-\subsection{Motivation}
+%\subsection{Motivation}
 
 Current Neural Networks (NN) and ML models do not explain or justify decisions
 in a manner suitable to present to a human user.  There is currently no
@@ -300,9 +300,9 @@ characters such as A, E, F, H, I and L often contain lines. Lines are an
 explainable geometric property of multiple character classes. Another
 explainable property comes from observing circles or semicircles in letters like
 O, Q, B, P, D. A third property is called stroke.  The stroke represents the
-undirected path traced by the writing implement when writing the character.  The
-width can vary between characters based on the writer, tip of the implement, or
-pressure.
+undirected path traced by the writing implement when writing the character.
+
+%The width can vary between characters based on the writer, tip of the implement, or pressure.
 
 From the list of explainable properties, property transforms are identified.  A
 property transform is a modification of the input to highlight an explainable
@@ -690,7 +690,7 @@ explainability metric, $X_d$, was reduced to 79\%.
 
 Table~\ref{tab_unexplainable_accuracy_results} shows the accuracy results using
 the indicated NN on the various EMNIST dataset and splits. On the full balanced
-dataset, with 46 classes, Resent50 and the CNN performed comparably. The two
+dataset, with 46 classes, Resnet50 and the CNN performed comparably. The two
 layer CNN can be observed as having maximum accuracy results in all cases except
 lowercase characters.  The reason for lower Resnet results may be due to
 resizing the input images since the Resnet implementation that was utilized
@@ -806,7 +806,7 @@ letters from 82.9\% without pruning.
 
 \begin{table}
     \centering
-    \caption{Explainable confusion matrix for uppercase letters H - M, U, and V after a single cleanlab pruning}
+    \caption{Explainable confusion matrix for uppercase letters H - M, U, and V after a single Cleanlab pruning}
     %\resizebox{\columnwidth}{!}{%
     \begin{tabular}{ |c|c|c|c|c|c|c|c|c|}
     \hline
@@ -883,14 +883,14 @@ explainable architecture.
 This section depicts the explainability results using examples from the EMNIST
 balanced test set using only explainable properties.  Example one, which is
 labeled as an uppercase Q, is shown in Fig.~\ref{fig:ex1}.  Table
-\ref{table:example1} shows that votes for classes Q, Z, R, and D were made by
+\ref{table:example1} shows that votes for classes Q, R, C and D were made by
 various properties.  Six of the properties contributed a vote for Q and one
 property each voted on the other classes.  Summing the effectiveness weights for
-the classes, Q wins with a confidence of 71\%.
+the classes, Q wins with a confidence of 77\%.
 
 \begin{figure}
     \centering
-    \includegraphics[width=1.5cm]{./images/examples/test-Q-0.png}
+    \includegraphics[width=1.5cm]{./images/examples/test-Q-3.png}
     \caption{Example 1: a test sample labeled Q}
     \label{fig:ex1}
 \end{figure}
@@ -903,31 +903,31 @@ the classes, Q wins with a confidence of 71\%.
     \cline{4-11}
     \multicolumn{3}{c}{} & \multicolumn{4}{|c|}{Effectiveness} & \multicolumn{4}{c|}{Explainability} \\
     \hline
-     $P_j$ & Property & Vote & $E_{j,Q}$ & $E_{j,Z}$ & $E_{j,R}$ & $E_{j,D}$ & $X_Q$ & $X_Z$ & $X_R$ & $X_D$ \\
+     $P_j$ & Property & Vote & $E_{j,C}$ & $E_{j,D}$ & $E_{j,Q}$ & $E_{j,R}$ & $X_C$ & $X_D$ & $X_Q$ & $X_R$ \\
     \hline \cline{0-10}
-    $P_0$ & Stroke & Q & 0.96 &  &  &  & \checkmark &  &  & \\ 
+    $P_0$ & Stroke & Q &  &  & 0.94 &  &  &  & \checkmark & \\ 
     \hline
-    $P_1$ & Circle & Q & 0.57 &  &  &  & \checkmark &  &  &  \\
+    $P_1$ & Circle & C & 0.39 &  &  &  & \checkmark &  &  &  \\
     \hline
-    $P_2$ & Crossing & D &  &  &  & 0.36 &  &  &  & \checkmark \\
+    $P_2$ & Crossing & Q &  &  & 0.71 &  &  &  & \checkmark &  \\
     \hline
-    $P_3$ & Circle & Q & 0.43 &  &  &  & \checkmark &  &  &  \\
+    $P_3$ & Circle & D & & 0.21 &  &  &  & \checkmark &  &  \\
     \hline
-    $P_4$ & Circle & Q & 0.63 &  &  &  & \checkmark &  &  &  \\
+    $P_4$ & Ellipse & R &  &  &  & 0.90 &  &  &  & \checkmark \\
     \hline
-    $P_5$ & Endpoint & Z &  & 0.56 & &  &  & \checkmark &  &  \\
+    $P_5$ & Endpoint & Q &  &  & 0.83 &  &  &  & \checkmark &  \\
     \hline
-    $P_6$ & Encl. Reg. &  &  &  &  &  &  &  &  &  \\
+    $P_6$ & Encl. Reg. & Q &  &  & 0.85 &  &  &  & \checkmark &  \\
     \hline
-    $P_7$ & Line & R &  &  & 0.50 &  &  &  & \checkmark &  \\
+    $P_7$ & Line & Q &  &  & 0.63 &  &  &  & \checkmark &  \\
     \hline
-    $P_8$ & Encl. Reg. & Q & 0.70 &  &  &  & \checkmark &  &  &  \\
+    $P_8$ & Encl. Reg. &  &  &  &  &  &  &  &  &  \\
     \hline
-    $P_9$ & Area & Q & 0.98 &  &  &  & \checkmark &  &  &  \\
+    $P_9$ & Area & Q &  &  & 0.95 &  &  &  & \checkmark &  \\
     \hline \cline{0-10}
-    \multicolumn{3}{|c|}{Weight} & 3.73 & 0.56 & 0.46 & 0.27 & \multicolumn{4}{c|}{$\sum W_k=5.26$} \\
+    \multicolumn{3}{|c|}{Weight} & 0.39 & 0.21 & 4.91 & 0.90 & \multicolumn{4}{c|}{$\sum W_k=6.41$} \\
     \cline{0-10}
-    \multicolumn{3}{|c|}{Confidence} & $71\%$ & $15\%$ & $9\%$ & $5\%$ & \multicolumn{4}{c}{} \\
+    \multicolumn{3}{|c|}{Confidence} & $6\%$ & $3\%$ & $77\%$ & $14\%$ & \multicolumn{4}{c}{} \\
     \cline{0-6}
     \end{tabular}%
     }
@@ -944,13 +944,13 @@ received votes from the NNs.
     \hline
      $X_d$ & Confidence & Explainable Description \\
     \hline \cline{1-3}
-    $X_Q$ & 71\% & Confidence is high for interpreting as a Q due to the circle, stroke, area, and enclosed region properties. \\ 
+    $X_Q$ & 77\% & Confidence is high for interpreting as a Q due to the stroke, area, crossing, line, and enclosed region properties. \\ 
     \hline
-    $X_Z$ & 15\% & Confidence is low for interpreting as a Z due to endpoint properties. \\
+    $X_R$ & 14\% & Confidence is low for interpreting as an R due to the ellipse property. \\
     \hline
-    $X_R$ & 9\% & Confidence is low for interpreting as a R due to line properties. \\
+    $X_C$ & 6\% & Confidence is low for interpreting as a C due to the circle property. \\
     \hline
-    $X_D$ & 5\% & Confidence is low for interpreting as a D due to crossing properties. \\
+    $X_D$ & 3\% & Confidence is low for interpreting as a D due to the circle property. \\
     \hline
     \end{tabular}
     \label{table:exexample1}
@@ -958,11 +958,12 @@ received votes from the NNs.
 
 Figure \ref{fig:ex2} shows example two from the test set which is labeled as an
 uppercase C. Votes by the properties in Table \ref{table:example2} show that
-several properties infer an uppercase C.  The overall weight for the class C is 4.95 from the effectiveness
-of the properties giving it a confidence of 74\%. The uppercase Z receives a
-vote from the enclosed region property. Uppercase O receives a vote from the
-circle property via the ellipse transform.  The class C wins with 74\% confidence.
-Table \ref{table:exexample2} shows the explainability for Example 2.
+several properties infer an uppercase C.  The overall weight for the class C is
+4.97 from the effectiveness of the properties giving it a confidence of 76\%.
+The uppercase Z receives a vote from the enclosed region property. Uppercase O
+receives a vote from the circle property via the ellipse transform.  The class C
+wins with 76\% confidence. Table \ref{table:exexample2} shows the explainability
+for Example 2.
 
 \begin{figure}
     \centering
@@ -979,31 +980,31 @@ Table \ref{table:exexample2} shows the explainability for Example 2.
     \cline{4-9}
     \multicolumn{3}{c}{} & \multicolumn{3}{|c|}{Effectiveness} & \multicolumn{3}{c|}{Explainability} \\
     \hline
-     $P_j$ & Property & Vote & $E_{j,C}$ & $E_{j,Z}$ & $E_{j,O}$ & $X_C$ & $X_Z$ & $X_O$ \\
+     $P_j$ & Property & Vote & $E_{j,C}$ & $E_{j,O}$ & $E_{j,Z}$ & $X_C$ & $X_O$ & $X_Z$ \\
     \hline \cline{0-8}
-    $P_0$ & Stroke & C & 1.0 &  &  & \checkmark &  & \\ 
+    $P_0$ & Stroke & C & 0.91 &  &  & \checkmark &  & \\ 
     \hline
-    $P_1$ & Circle & C & 0.37 &  &  & \checkmark &  &  \\
+    $P_1$ & Circle & C & 0.32 &  &  & \checkmark &  &  \\
     \hline
-    $P_2$ & Crossing & C & 0.12 &  &  & \checkmark &  &  \\
+    $P_2$ & Crossing & C & 0.94 &  &  & \checkmark &  &  \\
     \hline
-    $P_3$ & Circle & C & 0.42 &  &  & \checkmark &  &  \\
+    $P_3$ & Circle & C & 0.39 &  &  & \checkmark &  &  \\
     \hline
-    $P_4$ & Circle & O &  &  & 0.40 &  &  & \checkmark \\
+    $P_4$ & Ellipse & O &  & 0.61 &  &  & \checkmark &  \\
     \hline
-    $P_5$ & Endpoint & C & 0.95 &  &  & \checkmark &  &  \\
+    $P_5$ & Endpoint & C & 0.82 &  &  & \checkmark &  &  \\
     \hline
-    $P_6$ & Encl. Reg. & Z &  & 0.10 &  &  & \checkmark &  \\
+    $P_6$ & Encl. Reg. & Z &  &  & 0.98 &  &  & \checkmark \\
     \hline
-    $P_7$ & Line & C & 0.38 &  &  & \checkmark &  &  \\
+    $P_7$ & Line & C & 0.69 &  &  & \checkmark &  &  \\
     \hline
     $P_8$ & Encl. Reg. &  &  &  &  &  &  &  \\
     \hline
-    $P_9$ & Area & C & 0.86 &  &  & \checkmark &  &  \\
+    $P_9$ & Area & C & 0.89 &  &  & \checkmark &  &  \\
     \hline \cline{0-8}
-    \multicolumn{3}{|c|}{Weight} & 4.95 & 0.97 & 0.72 & \multicolumn{3}{c|}{$\sum W_k=6.64$} \\
+    \multicolumn{3}{|c|}{Weight} & 4.97 & 0.61 & 0.98 & \multicolumn{3}{c|}{$\sum W_k=6.56$} \\
     \cline{0-8}
-    \multicolumn{3}{|c|}{Confidence} & $74\%$ & $15\%$ & $11\%$ & \multicolumn{3}{c}{} \\
+    \multicolumn{3}{|c|}{Confidence} & $76\%$ & $9\%$ & $15\%$ & \multicolumn{3}{c}{} \\
     \cline{0-5}
     \end{tabular}%
     }
@@ -1017,11 +1018,11 @@ Table \ref{table:exexample2} shows the explainability for Example 2.
     \hline
      $X_d$ & Confidence & Explainable Description \\
     \hline \cline{1-3}
-    $X_C$ & 74\% & Confidence is high for interpreting as a C due to the stroke, endpoint, area, circle, and crossing properties. \\ 
+    $X_C$ & 76\% & Confidence is high for interpreting as a C due to the crossing, stroke, area, endpoint, line, and circle properties. \\ 
     \hline
-    $X_Z$ & 15\% & Confidence is low for interpreting as a Z due to enclosed region properties. \\
+    $X_Z$ & 15\% & Confidence is low for interpreting as a Z due to the enclosed region property. \\
     \hline
-    $X_O$ & 11\% & Confidence is low for interpreting as a O due to circle properties. \\
+    $X_O$ & 9\% & Confidence is low for interpreting as a O due to the ellipse property. \\
     \hline
     \end{tabular}
     \label{table:exexample2}
@@ -1115,7 +1116,7 @@ able to correctly inference, according to human recognition, mislabeled samples.
     \begin{subfigure}{.20\columnwidth}
         \centering
         \includegraphics[width=.90\textwidth]{./images/issues/excluded-G-0-el-circle.png}
-        \caption{Ellispe}
+        \caption{Ellipse}
         %\label{fig:inf_issue_O7}
     \end{subfigure}%
     \begin{subfigure}{.20\columnwidth}
@@ -1316,7 +1317,7 @@ Further investigations for potential improvements to the explainable
 architecture involve exploring varying NN architectures as well as ensuring that
 transforms absent of activated pixels do not contribute to decisions. 
 
-\bibliographystyle{plain}
+\bibliographystyle{IEEEtran}
 \bibliography{references}
 
 \end{document}
