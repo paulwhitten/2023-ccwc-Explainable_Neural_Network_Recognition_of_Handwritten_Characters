@@ -36,8 +36,6 @@ pcw@case.edu, fxw12@case.edu, cap2@case.edu}
 %email address}
 }
 
-\IEEEoverridecommandlockouts
-\IEEEpubid{\makebox[\columnwidth]{979-8-3503-3286-5/23/\$31.00~\copyright2023 IEEE \hfill} \hspace{\columnsep}\makebox[\columnwidth]{ }}
 
 \maketitle
 
@@ -635,6 +633,7 @@ accuracy on uppercase letters.  Higher thresholds up to 95\% were also
 attempted, however, poor accuracy results were observed.
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \centering
     \caption{The number of pruned samples based on a 75\% confidence threshold}
     %\resizebox{\textwidth}{!}{%
@@ -697,6 +696,7 @@ resizing the input images since the Resnet implementation that was utilized
 requires a minimum input of 32x32.  
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \centering
     \caption{Unexplainable accuracy results on various balanced EMNIST data sets with differing NN models}
     \resizebox{\columnwidth}{!}{%
@@ -731,6 +731,7 @@ Resnet50 models appeared to perform better with the full EMNIST dataset and
 uppercase characters.
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \centering
     \caption{Explainable accuracy results on various balanced EMNIST data sets with differing NN models}
     \resizebox{\columnwidth}{!}{%
@@ -767,6 +768,7 @@ with the U and V classes.
 %\end{figure}
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \centering
     \caption{Explainable confusion matrix for unpruned uppercase letters H - M, U, and V}
     %\resizebox{\columnwidth}{!}{%
@@ -805,6 +807,7 @@ one round of Cleanlab were an increase in accuracy to 87.4\% on uppercase
 letters from 82.9\% without pruning.
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \centering
     \caption{Explainable confusion matrix for uppercase letters H - M, U, and V after a single Cleanlab pruning}
     %\resizebox{\columnwidth}{!}{%
@@ -845,6 +848,7 @@ on uppercase letters versus 82.9\% on unpruned test data using CNN in the
 explainable architecture.  
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \centering
     \caption{Explainable confusion matrix for uppercase letters H - M, U, and V after three rounds of Cleanlab pruning}
     %\resizebox{\columnwidth}{!}{%
@@ -896,6 +900,7 @@ the classes, Q wins with a confidence of 77\%.
 \end{figure}
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \caption{Prob. voting, effectiveness, and explainability for example 1}
     \centering
     \resizebox{\columnwidth}{!}{%
@@ -938,6 +943,7 @@ Explainable rationale provided by XAI is depicted in Table~\ref{table:exexample1
 received votes from the NNs.
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \caption{Rationale for example 1}
     \centering
     \begin{tabular}{| p{0.04\linewidth} | p{0.14\linewidth} | p{0.65\linewidth} |}
@@ -1012,6 +1018,7 @@ for Example 2.
 \end{table}
 
 \begin{table}
+    \renewcommand{\arraystretch}{1.3}
     \caption{Rationale for example 2}
     \centering
     \begin{tabular}{| p{0.04\linewidth} | p{0.14\linewidth} | p{0.65\linewidth} |}
